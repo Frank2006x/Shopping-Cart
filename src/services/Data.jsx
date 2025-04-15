@@ -9,7 +9,7 @@ const Data = ({ setProduct }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetch("https://fakestoreapi.com/products");
+        const data = await fetch("https://dummyjson.com/products?limit=100");
         const response = await data.json();
         setProduct(response);
         setTimeout(()=>{setIsLoading(false)}, 2000);
@@ -24,7 +24,7 @@ const Data = ({ setProduct }) => {
   return (
     <>
       {isLoading &&
-        createPortal(<Loader />, document.getElementById("overlay"))}
+        createPortal(<Loader/>, document.getElementById("overlay"))}
     </>
   );
 };

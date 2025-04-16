@@ -9,7 +9,7 @@ const Data = ({ setProduct }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetch("https://dummyjson.com/products?limit=100");
+        const data = await fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15");
         const response = await data.json();
         setProduct(response);
         setTimeout(()=>{setIsLoading(false)}, 2000);

@@ -26,6 +26,7 @@ const StyledWrapper = styled.div`
 
   .container {
     position: relative;
+    width:7rem;
     padding: 3px;
     background: linear-gradient(90deg, #39FF14, #24f666);
     border-radius: 0.8em; /* Slightly smaller border radius */

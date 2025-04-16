@@ -9,13 +9,14 @@ const Data = ({ setProduct }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15");
+        const data = await fetch("https://api.rawg.io/api/games?key=9089809c8f4c48c78233c2c5373a411b&page_size=20");
         const response = await data.json();
-        setProduct(response);
+        setProduct(response.results);
         setTimeout(()=>{setIsLoading(false)}, 2000);
-        console.log(response);
+        console.log(response.results);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     };
     fetchData();

@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import Loader from "../UI/Loader";
 import InfiniteLoader from "../UI/InfiniteLoader";
 import { createPortal } from "react-dom";
+import { useRef } from "react";
 import { useAsyncList } from "@react-stately/data";
 import { useInView } from "react-intersection-observer";
 
@@ -32,14 +33,19 @@ const Home = () => {
       };
     },
   });
-  const { ref, inView } = useInView({});
-
+  const { ref, inView } = useInView({
+    // rootMargin: '1000px', not to show loading 
+  });
+  const listRef=useRef(list);
+  useEffect(()=>{
+    listRef.current=list;
+  },[list])
   useEffect(() => {
-    if (list.items.length && inView && !list.isLoading) {
-      list.loadMore();
+    if (listRef.current.items.length && inView && !list.isLoading) {
+      listRef.current.loadMore();
       
     }
-  }, [inView, list]);
+  }, [inView]);
 
 
 

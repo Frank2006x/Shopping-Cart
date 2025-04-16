@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ element }) => {
   return (
-    <div className="w-60  rounded-2xl overflow-hidden shadow-lg bg-[#1c1a1ad1]
+    <div className="card w-60  rounded-2xl overflow-hidden shadow-lg bg-[#1c1a1ad1]
      text-white transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_15px_#55ff88ba] border border-zinc-800">
       <img
         loading="lazy"

@@ -3,7 +3,7 @@ import Button from "../UI/ShopNow";
 import { FiShoppingCart, FiHome } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({cartCount}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -32,7 +32,7 @@ const NavBar = () => {
               <FiShoppingCart className="text-lg" />
               <span>Cart</span>
               <span className="ml-1 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                0
+                {cartCount}
               </span>
             </Link>
           </li>

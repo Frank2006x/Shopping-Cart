@@ -10,12 +10,18 @@ import Card from "../components/Card";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Detail = () => {
+const Detail = ({ cart, setCart }) => {
   const location = useLocation();
   const data = location.state || {};
   const [trendingGames, setTrendingGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
+  const addToCart = (data) => {
+    if (!cart.includes(data)) {
+      setCart([...cart, data]);
+      console.log(cart);
+    }
+  };
 
   useEffect(() => {
     try {
@@ -24,10 +30,9 @@ const Detail = () => {
           "https://api.rawg.io/api/games?key=9089809c8f4c48c78233c2c5373a411b&ordering=-added&page_size=50"
         );
         const trendingData = await trending.json();
-        setIsLoading(false)
-        
+        setIsLoading(false);
+
         setTrendingGames(trendingData.results);
-        
       };
       fetchData();
     } catch (error) {
@@ -85,7 +90,13 @@ const Detail = () => {
               </span>
             ))}
           </div>
-          <Button />
+          <div
+            onClick={() => {
+              addToCart(data);
+            }}
+          >
+            <Button />
+          </div>
         </div>
       </div>
       <div className="flex flex-col ">
@@ -111,8 +122,7 @@ const Detail = () => {
                 className="w-full h-auto object-cover"
               />
             </SwiperSlide>
-          ))
-          }
+          ))}
         </Swiper>
       </div>
       <div className="trending w-full flex flex-col">

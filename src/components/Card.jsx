@@ -1,9 +1,19 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
 const Card = ({ element }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate("/detail", { state: element });
+  };
   return (
-    <div className="card w-60  rounded-2xl overflow-hidden shadow-lg bg-[#1c1a1ad1]
-     text-white transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_15px_lightgrey] border border-zinc-800">
+    <div
+      onClick={handleClick}
+      className="card w-60  rounded-2xl overflow-hidden shadow-lg bg-[#1c1a1ad1]
+     text-white transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_15px_#003e00] border border-zinc-800"
+    >
       <img
         loading="lazy"
         src={element.background_image}

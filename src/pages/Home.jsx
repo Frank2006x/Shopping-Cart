@@ -10,15 +10,13 @@ import { useAsyncList } from "@react-stately/data";
 import { useInView } from "react-intersection-observer";
 
 const Home = () => {
-  const [onStart, setOnStart] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [startWith, setStartWith] = useState("");
   const [onSearch, setOnSearch] = useState(false);
+  
 
-  useEffect(() => {
-    setTimeout(() => {
-      setOnStart(false);
-    }, 3000);
-  }, []);
+    
+
   let list = useAsyncList({
     async load({ signal, cursor }) {
       // If no cursor is available, then we're loading the first page.
@@ -31,6 +29,7 @@ const Home = () => {
         }
       );
       let json = await res.json();
+      setIsLoading(false)
       return {
         items: json.results,
         cursor: json.next,
@@ -65,8 +64,8 @@ const Home = () => {
 
   return (
     <>
-      {onStart && createPortal(<Loader />, document.querySelector("#overlay"))}
-      {!onStart && (
+      {isLoading && createPortal(<Loader />, document.querySelector("#overlay"))}
+      {list && (
         <div className="flex flex-col">
           <Search setStartWith={setStartWith} />
           {!onSearch && (
@@ -86,7 +85,7 @@ const Home = () => {
         ref={ref}
         className="text-center py-8 flex justify-center infiniteLoader"
       >
-        {!onStart && <InfiniteLoader />}
+        {!isLoading && <InfiniteLoader />}
       </div>
     </>
   );

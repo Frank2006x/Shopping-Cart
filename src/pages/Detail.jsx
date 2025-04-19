@@ -17,7 +17,7 @@ const Detail = ({ cart, setCart }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const addToCart = (data) => {
-    if (!cart.includes(data)) {
+    if (!cart.some((item)=>item.id===data.id)) {
       setCart([...cart, data]);
       console.log(cart);
     }

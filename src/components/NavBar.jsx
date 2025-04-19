@@ -81,7 +81,7 @@ const NavBar = ({cartCount}) => {
             <FiShoppingCart className="text-lg" />
             Cart
             <span className="ml-1 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-              0
+            {cartCount}
             </span>
           </Link>
 
